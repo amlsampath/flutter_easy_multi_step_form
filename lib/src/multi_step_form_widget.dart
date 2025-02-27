@@ -259,6 +259,7 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget>
                     padding: EdgeInsets.only(
                         top: size.width * 0.04,
                         left: size.width * 0.02,
+                        bottom: size.height * .15,
                         right: size.width * 0.02),
                     child: Card(
                       elevation: isDark ? 2 : 1,
@@ -273,7 +274,6 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             ...widget.steps[_currentStep].fields,
-                            SizedBox(height: size.height * 0.1),
                           ],
                         ),
                       ),
