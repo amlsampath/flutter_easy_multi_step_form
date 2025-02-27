@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'theme/form_theme.dart';
 
 import 'package:flutter_easy_multi_step_from/src/form_step.dart';
@@ -18,14 +18,15 @@ class MultiStepFormWidget extends StatefulWidget {
     super.key,
     required this.steps,
     required this.onSubmit,
-    this.nextButtonColor = Colors.black,
-    this.prevButtonColor = Colors.white,
-    this.submitButtonColor = Colors.white,
+    this.nextButtonColor = const Color(0xFF2196F3), // Primary blue
+    this.prevButtonColor = const Color(0xFF424242), // Dark grey
+    this.submitButtonColor = const Color(0xFF4CAF50), // Green
     this.nextButtonTextColor = Colors.white,
-    this.prevButtonTextColor = Colors.black,
-    this.submitButtonTextColor = Colors.green,
-    this.stepIndicatorActiveColor = Colors.green,
-    this.stepIndicatorDefaultColor = Colors.black,
+    this.prevButtonTextColor = Colors.white,
+    this.submitButtonTextColor = Colors.white,
+    this.stepIndicatorActiveColor = const Color(0xFF2196F3), // Primary blue
+    this.stepIndicatorDefaultColor = const Color(0xFF757575), // Medium grey
+
     this.fontFamily = '',
     this.formBackgroundColor = Colors.white,
   });
@@ -83,6 +84,7 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget>
   @override
   void initState() {
     super.initState();
+
     initFormGlobalKeys();
     _animationController = AnimationController(
       vsync: this,
@@ -97,6 +99,7 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget>
   @override
   void dispose() {
     _animationController.dispose();
+
     super.dispose();
   }
 
@@ -269,15 +272,6 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget>
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              widget.steps[_currentStep].title,
-                              style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                                color: isDark ? Colors.white : Colors.black87,
-                              ),
-                            ),
-                            const SizedBox(height: FormTheme.spacing * 1),
                             ...widget.steps[_currentStep].fields,
                             SizedBox(height: size.height * 0.1),
                           ],

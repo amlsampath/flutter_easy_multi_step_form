@@ -4,3 +4,6 @@
 
 ## 1.0.1
 * Code refactoring and add necessary comments.
+
+## 1.0.3
+* UI improvement

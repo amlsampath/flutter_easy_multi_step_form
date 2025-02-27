@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 
 /// A customizable text form field widget with enhanced styling and validation.
 class EasyTextFormField extends StatelessWidget {
@@ -41,9 +41,9 @@ class EasyTextFormField extends StatelessWidget {
         children: [
           Text(
             label,
-            style: GoogleFonts.poppins(
-              fontWeight: FontWeight.w500,
+            style: TextStyle(
               fontSize: 14,
+              fontWeight: FontWeight.w500,
             ),
           ),
           const SizedBox(height: 6),
@@ -54,14 +54,14 @@ class EasyTextFormField extends StatelessWidget {
             validator: validator,
             decoration: InputDecoration(
               labelText: label,
-              labelStyle: GoogleFonts.poppins(
+              labelStyle: TextStyle(
                 fontSize: 14,
               ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
             ),
-            style: GoogleFonts.poppins(fontSize: 14),
+            style: TextStyle(fontSize: 14),
           ),
         ],
       ),

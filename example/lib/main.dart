@@ -80,15 +80,33 @@ class _ProfileCreationFormState extends State<ProfileCreationForm> {
                 EasyTextFormField(
                   controller: firstNameController,
                   label: 'First Name',
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'First name is required';
+                    }
+                    return null;
+                  },
                 ),
                 EasyTextFormField(
                   controller: lastNameController,
                   label: 'Last Name',
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Last name is required';
+                    }
+                    return null;
+                  },
                 ),
                 EasyTextFormField(
                   controller: dobController,
                   label: 'Date of Birth',
                   keyboardType: TextInputType.datetime,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Date of birth is required';
+                    }
+                    return null;
+                  },
                 ),
                 EasyTextFormField(
                   controller: phoneController,
@@ -105,19 +123,46 @@ class _ProfileCreationFormState extends State<ProfileCreationForm> {
                   controller: streetAddressController,
                   label: 'Street Address',
                 ),
-                EasyTextFormField(controller: cityController, label: 'City'),
+                EasyTextFormField(
+                  controller: cityController,
+                  label: 'City',
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'City is required';
+                    }
+                    return null;
+                  },
+                ),
                 EasyTextFormField(
                   controller: stateController,
                   label: 'State/Province',
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Postal code is required';
+                    }
+                    return null;
+                  },
                 ),
                 EasyTextFormField(
                   controller: postalCodeController,
                   label: 'Postal Code',
                   keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Postal code is required';
+                    }
+                    return null;
+                  },
                 ),
                 EasyTextFormField(
                   controller: countryController,
                   label: 'Country',
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Country is required';
+                    }
+                    return null;
+                  },
                 ),
               ],
             ),
