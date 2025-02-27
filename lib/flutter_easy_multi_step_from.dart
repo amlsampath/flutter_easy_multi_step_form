@@ -15,7 +15,7 @@
 ///       fields: [
 ///         EasyTextFormField(
 ///           label: 'Name',
-///           validator: (value) => value?.isEmpty ?? true ? 'Required' : null,
+///           controller: nameController,
 ///         ),
 ///       ],
 ///     ),
