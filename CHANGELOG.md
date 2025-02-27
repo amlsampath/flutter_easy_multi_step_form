@@ -1,3 +1,6 @@
-## 0.0.1
+## 1.0.0
 
-* TODO: Describe initial release.
+* A comprehensive Flutter package that provides an easy-to-use, customizable multi-step form widget with built-in validation, navigation, and state management capabilities.
+
+## 1.0.1
+* Code refactoring and add necessary comments.
