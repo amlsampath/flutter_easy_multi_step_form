@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'theme/form_theme.dart';
 
 class MultiStepElevatedButton extends StatelessWidget {
   final VoidCallback onPressed;
@@ -15,14 +16,45 @@ class MultiStepElevatedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(vertical: 10),
-        backgroundColor: backgroundColor,
-        foregroundColor: foregroundColor,
+    final size = MediaQuery.of(context).size;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    return Container(
+      height: size.height * 0.06,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(FormTheme.borderRadius),
+        color: backgroundColor,
+        boxShadow: [
+          BoxShadow(
+            color: isDark ? Colors.black26 : backgroundColor.withAlpha(50),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
-      onPressed: onPressed,
-      child: Text(text),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: backgroundColor,
+          foregroundColor: foregroundColor,
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(FormTheme.borderRadius),
+          ),
+          padding: EdgeInsets.symmetric(
+            horizontal: size.width * 0.04,
+            vertical: size.height * 0.015,
+          ),
+        ),
+        onPressed: onPressed,
+        child: Text(
+          text,
+          style: TextStyle(
+            color: foregroundColor,
+            fontSize: size.width * 0.04,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
     );
   }
 }

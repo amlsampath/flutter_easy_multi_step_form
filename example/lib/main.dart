@@ -13,14 +13,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Multistep Registration Form',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      darkTheme: ThemeData.dark().copyWith(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: ThemeData.light(), // Light theme
+      darkTheme: ThemeData.dark(), // Dark theme
       themeMode: ThemeMode.dark,
       home: const ProfileCreationForm(),
     );
