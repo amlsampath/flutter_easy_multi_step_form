@@ -76,7 +76,7 @@ class _ProfileCreationFormState extends State<ProfileCreationForm> {
           steps: [
             FormStep(
               title: 'Personal Info',
-              content: [
+              fields: [
                 const Text('Enter your personal details:'),
                 EasyTextFormField(
                   controller: firstNameController,
@@ -100,7 +100,7 @@ class _ProfileCreationFormState extends State<ProfileCreationForm> {
             ),
             FormStep(
               title: 'Address Info',
-              content: [
+              fields: [
                 const Text('Enter your address details:'),
                 EasyTextFormField(
                   controller: streetAddressController,
@@ -124,7 +124,7 @@ class _ProfileCreationFormState extends State<ProfileCreationForm> {
             ),
             FormStep(
               title: 'Account Settings',
-              content: [
+              fields: [
                 const Text('Set up your account credentials:'),
                 EasyTextFormField(
                   controller: emailController,
@@ -167,7 +167,7 @@ class _ProfileCreationFormState extends State<ProfileCreationForm> {
             ),
             FormStep(
               title: 'Employment Info',
-              content: [
+              fields: [
                 const Text('Enter your employment details:'),
                 EasyTextFormField(
                   controller: companyController,
@@ -186,7 +186,7 @@ class _ProfileCreationFormState extends State<ProfileCreationForm> {
             ),
             FormStep(
               title: 'Emergency Contact',
-              content: [
+              fields: [
                 const Text('Enter an emergency contact:'),
                 EasyTextFormField(
                   controller: contactNameController,
@@ -205,7 +205,7 @@ class _ProfileCreationFormState extends State<ProfileCreationForm> {
             ),
             FormStep(
               title: 'Preferences',
-              content: [
+              fields: [
                 const Text('Select your preferences:'),
                 EasyTextFormField(
                   controller: contactMethodController,

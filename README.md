@@ -8,7 +8,7 @@ A Flutter package that simplifies the creation of multi-step forms with built-in
 - Built-in form validation
 - Customizable UI components
 - Step navigation with progress tracking
-- Form state management
+
 
 ## Getting started
 
@@ -41,4 +41,4 @@ final form = MultiStepFormWidget(
 
 ## Additional information
 
-For more examples and documentation, visit the [repository](https://github.com/yourusername/flutter_easy_multi_step_from).
+For more examples and documentation, visit the [repository](https://github.com/amlsampath/flutter_easy_multi_step_from).
