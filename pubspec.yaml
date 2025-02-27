@@ -1,11 +1,12 @@
 name: flutter_easy_multi_step_from
-description: "A Flutter package to implement a multi-step form widget."
-version: 0.0.1
-homepage: https://github.com/amlsampath/flutter_easy_multi_step_form
+description: A comprehensive Flutter package that provides an easy-to-use, customizable multi-step form widget with built-in validation, navigation, and state management capabilities.
+version: 1.0.0
+repository: https://github.com/amlsampath/flutter_easy_multi_step_form.git
+homepage: https://github.com/amlsampath/flutter_easy_multi_step_form.git
 license: MIT
 
 environment:
-  sdk: ^3.7.0
+  sdk: '>=2.19.0 <4.0.0'
   flutter: ">=1.17.0"
 
 dependencies:

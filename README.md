@@ -1,22 +1,44 @@
-# Multi-Step Form Widget
+# Flutter Easy Multi Step Form
 
-A highly customizable Flutter package that provides an easy way to implement multi-step forms with a dynamic step indicator, customizable button colors, and flexible navigation controls.
+A Flutter package that simplifies the creation of multi-step forms with built-in validation and navigation.
 
-## 🚀 Features
+## Features
 
-- Dynamic multi-step form with step indicators  
-- Customizable colors for buttons and indicators  
-- Font customization support  
-- Optimized state management with `ValueNotifier` for smooth performance  
-- Responsive and mobile-friendly design  
+- Easy to implement multi-step forms
+- Built-in form validation
+- Customizable UI components
+- Step navigation with progress tracking
+- Form state management
 
----
+## Getting started
 
-## 🛠️ Installation
-
-Add the following to your `pubspec.yaml`:
+Add the package to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  multi_step_form_widget: ^1.0.0
+  flutter_easy_multi_step_from: ^1.0.0
 ```
+
+## Usage
+
+```dart
+import 'package:flutter_easy_multi_step_from/flutter_easy_multi_step_from.dart';
+
+final form = MultiStepFormWidget(
+  steps: [
+    FormStep(
+      title: 'Personal Info',
+      fields: [
+        EasyTextFormField(
+          label: 'Name',
+          validator: (value) => value?.isEmpty ?? true ? 'Required' : null,
+        ),
+      ],
+    ),
+  ],
+);
+```
+
+## Additional information
+
+For more examples and documentation, visit the [repository](https://github.com/yourusername/flutter_easy_multi_step_from).
