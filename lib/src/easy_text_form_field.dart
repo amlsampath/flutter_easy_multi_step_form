@@ -1,83 +1,67 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-/// A customizable text form field widget that provides enhanced styling and validation capabilities.
-///
-/// This widget extends Flutter's basic TextFormField with additional styling options
-/// and simplified validation handling.
+/// A customizable text form field widget with enhanced styling and validation.
 class EasyTextFormField extends StatelessWidget {
-  /// Creates an EasyTextFormField widget.
-  ///
-  /// The [label] parameter is required and displayed as the field's label.
+  /// Creates an [EasyTextFormField].
   const EasyTextFormField({
     super.key,
     required this.label,
+    required this.controller,
     this.keyboardType = TextInputType.text,
     this.obscureText = false,
-    required this.controller,
-    this.backgroundColor = const Color.fromARGB(26, 4, 255, 25),
+    this.backgroundColor = const Color(0x1A04FF19),
     this.validator,
   });
 
-  /// The label text displayed above the form field.
+  /// Label text displayed above the form field.
   final String label;
 
-  /// The text input type for the form field.
-  ///
-  /// Defaults to [TextInputType.text].
+  /// Defines the keyboard type for the input field.
   final TextInputType keyboardType;
 
-  /// Whether the text is obscured (e.g., for passwords).
-  ///
-  /// Defaults to false.
+  /// Whether the text should be obscured (useful for passwords).
   final bool obscureText;
 
-  /// The text editing controller for the form field.
-  ///
-  /// Controls the text being edited in the form field.
+  /// Controller for managing text input.
   final TextEditingController controller;
 
-  /// The background color of the form field.
-  ///
-  /// Defaults to the theme's background color if not specified.
+  /// Background color of the text field container.
   final Color backgroundColor;
 
-  /// Optional validator function that returns an error message string
-  /// if the input is invalid, and null otherwise.
+  /// Validator function to check input validity.
   final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             label,
-            style: TextStyle(
+            style: GoogleFonts.poppins(
               fontWeight: FontWeight.w500,
-              fontFamily: GoogleFonts.poppins().fontFamily,
+              fontSize: 14,
             ),
           ),
-          SizedBox(height: 5),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: backgroundColor,
-            ),
-            child: TextFormField(
-              controller: controller,
-              decoration: InputDecoration(
-                labelText: label,
-                border: InputBorder.none,
+          const SizedBox(height: 6),
+          TextFormField(
+            controller: controller,
+            keyboardType: keyboardType,
+            obscureText: obscureText,
+            validator: validator,
+            decoration: InputDecoration(
+              labelText: label,
+              labelStyle: GoogleFonts.poppins(
+                fontSize: 14,
               ),
-              keyboardType: keyboardType,
-              obscureText: obscureText,
-              validator: validator,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
             ),
+            style: GoogleFonts.poppins(fontSize: 14),
           ),
         ],
       ),

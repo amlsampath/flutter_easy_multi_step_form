@@ -123,7 +123,7 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget>
             children: [
               AnimatedContainer(
                 duration: const Duration(milliseconds: 200),
-                width: 45,
+                width: 30,
                 height: 45,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
@@ -175,7 +175,7 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget>
                 ),
             ],
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 2),
           Text(
             title,
             style: TextStyle(
@@ -205,7 +205,8 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget>
           body: Column(
             children: [
               Container(
-                padding: EdgeInsets.all(size.width * 0.04),
+                padding: EdgeInsets.only(
+                    left: size.width * 0.04, top: size.width * 0.04),
                 decoration: BoxDecoration(
                   color: Theme.of(context).scaffoldBackgroundColor,
                   boxShadow: [
@@ -232,7 +233,7 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget>
                         minHeight: 6,
                       ),
                     ),
-                    const SizedBox(height: FormTheme.spacing * 1.5),
+                    const SizedBox(height: FormTheme.spacing * 1),
                     SizedBox(
                       height: 85,
                       child: ListView.builder(
