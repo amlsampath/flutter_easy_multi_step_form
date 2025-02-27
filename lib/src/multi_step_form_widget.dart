@@ -5,17 +5,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_easy_multi_step_from/src/form_step.dart';
 import 'package:flutter_easy_multi_step_from/src/multi_step_elevated_button.dart';
 
+/// A widget that displays a multi-step form with navigation controls.
+///
+/// This widget manages the state and navigation between multiple form steps,
+/// providing a consistent interface for collecting user input across multiple screens.
 class MultiStepFormWidget extends StatefulWidget {
-  final List<FormStep> steps;
-  final Function onSubmit;
-  final Color nextButtonColor;
-  final Color prevButtonColor;
-  final Color submitButtonColor;
-  final Color stepIndicatorActiveColor;
-  final Color stepIndicatorDefaultColor;
-
-  final String fontFamily;
-
+  /// Creates a MultiStepFormWidget.
+  ///
+  /// The [steps] parameter is required and contains the list of form steps to display.
   const MultiStepFormWidget({
     super.key,
     required this.steps,
@@ -27,6 +24,32 @@ class MultiStepFormWidget extends StatefulWidget {
     this.stepIndicatorDefaultColor = Colors.black,
     this.fontFamily = '',
   });
+
+  /// The list of form steps to display.
+  final List<FormStep> steps;
+
+  /// Callback function called when all steps are completed.
+  ///
+  /// This function is called when the user reaches and completes the last step.
+  final Function onSubmit;
+
+  /// The color of the next button.
+  final Color nextButtonColor;
+
+  /// The color of the previous button.
+  final Color prevButtonColor;
+
+  /// The color of the submit button.
+  final Color submitButtonColor;
+
+  /// The color of the active step indicator.
+  final Color stepIndicatorActiveColor;
+
+  /// The color of the default step indicator.
+  final Color stepIndicatorDefaultColor;
+
+  /// The font family to use for text in the form.
+  final String fontFamily;
 
   @override
   State<MultiStepFormWidget> createState() => _MultiStepFormWidgetState();
@@ -53,10 +76,9 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget> {
 
   @override
   Widget build(BuildContext context) {
-    String fontFamily =
-        widget.fontFamily.isEmpty
-            ? GoogleFonts.poppins().fontFamily!
-            : widget.fontFamily;
+    String fontFamily = widget.fontFamily.isEmpty
+        ? GoogleFonts.poppins().fontFamily!
+        : widget.fontFamily;
 
     Size size = MediaQuery.of(context).size;
     return SafeArea(
@@ -89,10 +111,9 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget> {
                                 ),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(50),
-                                  color:
-                                      _currentStep == index
-                                          ? widget.stepIndicatorActiveColor
-                                          : widget.stepIndicatorDefaultColor,
+                                  color: _currentStep == index
+                                      ? widget.stepIndicatorActiveColor
+                                      : widget.stepIndicatorDefaultColor,
                                 ),
                                 child: Text(
                                   (index + 1).toString(),
@@ -107,10 +128,9 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget> {
                                 widget.steps[index].title,
                                 style: TextStyle(
                                   fontWeight: FontWeight.w900,
-                                  color:
-                                      _currentStep == index
-                                          ? widget.stepIndicatorActiveColor
-                                          : widget.stepIndicatorDefaultColor,
+                                  color: _currentStep == index
+                                      ? widget.stepIndicatorActiveColor
+                                      : widget.stepIndicatorDefaultColor,
                                   fontFamily: fontFamily,
                                 ),
                               ),
@@ -118,10 +138,9 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget> {
                               Container(
                                 width: size.width * .15,
                                 height: 3,
-                                color:
-                                    _currentStep == index
-                                        ? widget.stepIndicatorActiveColor
-                                        : widget.stepIndicatorDefaultColor,
+                                color: _currentStep == index
+                                    ? widget.stepIndicatorActiveColor
+                                    : widget.stepIndicatorDefaultColor,
                               ),
                             ],
                           ),
@@ -130,7 +149,7 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget> {
                     ),
                   ),
                   SizedBox(height: size.height * 0.02),
-                  Column(children: widget.steps[_currentStep].content),
+                  Column(children: widget.steps[_currentStep].fields),
                 ],
               ),
             ),
