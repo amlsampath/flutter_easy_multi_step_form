@@ -112,8 +112,11 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget>
   Widget _buildStepIndicator(int index, String title, BuildContext context) {
     bool isActive = _currentStep == index;
     bool isPast = _currentStep > index;
-
     bool isDark = Theme.of(context).brightness == Brightness.dark;
+
+    Color defaultTextColor = isDark ? Colors.white70 : Colors.black87;
+    Color activeTextColor = widget.stepIndicatorActiveColor;
+
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 8),
       child: Column(
@@ -128,7 +131,9 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget>
                   ? widget.stepIndicatorActiveColor
                   : isActive
                       ? widget.stepIndicatorActiveColor
-                      : widget.stepIndicatorDefaultColor,
+                      : isDark
+                          ? Colors.white24
+                          : widget.stepIndicatorDefaultColor,
               border: Border.all(
                 color: isActive
                     ? widget.stepIndicatorActiveColor
@@ -154,9 +159,7 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget>
             style: TextStyle(
               fontSize: 12,
               fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
-              color: isActive
-                  ? widget.stepIndicatorActiveColor
-                  : widget.stepIndicatorDefaultColor,
+              color: isActive ? activeTextColor : defaultTextColor,
             ),
           ),
         ],
@@ -167,12 +170,12 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget>
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    final bool isDark = Theme.of(context).brightness == Brightness.dark;
 
     return SafeArea(
       child: Form(
         key: formKeys[_currentStep],
         child: Scaffold(
-          //   backgroundColor: widget.formBackgroundColor,
           body: Column(
             children: [
               Container(
@@ -181,7 +184,8 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget>
                   color: Theme.of(context).scaffoldBackgroundColor,
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withAlpha(13),
+                      color:
+                          isDark ? Colors.black26 : Colors.black.withAlpha(13),
                       blurRadius: 10,
                       offset: const Offset(0, 2),
                     ),
@@ -237,7 +241,7 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget>
               color: Theme.of(context).scaffoldBackgroundColor,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withAlpha(13),
+                  color: isDark ? Colors.black26 : Colors.black.withAlpha(13),
                   blurRadius: 10,
                   offset: const Offset(0, -2),
                 ),
