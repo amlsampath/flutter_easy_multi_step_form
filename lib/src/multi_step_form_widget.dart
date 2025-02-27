@@ -114,52 +114,78 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget>
     bool isPast = _currentStep > index;
     bool isDark = Theme.of(context).brightness == Brightness.dark;
 
-    Color defaultTextColor = isDark ? Colors.white70 : Colors.black87;
-    Color activeTextColor = widget.stepIndicatorActiveColor;
-
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 12),
       child: Column(
         children: [
-          AnimatedContainer(
-            duration: const Duration(milliseconds: 200),
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: isPast
-                  ? widget.stepIndicatorActiveColor
-                  : isActive
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 200),
+                width: 45,
+                height: 45,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: isPast || isActive
                       ? widget.stepIndicatorActiveColor
                       : isDark
-                          ? Colors.white24
-                          : widget.stepIndicatorDefaultColor,
-              border: Border.all(
-                color: isActive
-                    ? widget.stepIndicatorActiveColor
-                    : Colors.transparent,
-                width: 2,
+                          ? Colors.white10
+                          : Colors.grey[200],
+                  boxShadow: isPast || isActive
+                      ? [
+                          BoxShadow(
+                            color: widget.stepIndicatorActiveColor
+                                .withOpacity(0.4),
+                            blurRadius: 8,
+                            offset: const Offset(0, 2),
+                          )
+                        ]
+                      : null,
+                ),
+                child: Center(
+                  child: isPast
+                      ? Icon(Icons.check, color: Colors.white, size: 22)
+                      : Text(
+                          '${index + 1}',
+                          style: TextStyle(
+                            color: isActive
+                                ? Colors.white
+                                : isDark
+                                    ? Colors.white70
+                                    : Colors.grey[600],
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                ),
               ),
-            ),
-            child: Center(
-              child: isPast
-                  ? Icon(Icons.check, color: Colors.white, size: 20)
-                  : Text(
-                      '${index + 1}',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-            ),
+              if (index < widget.steps.length - 1)
+                Positioned(
+                  right: -25,
+                  child: Container(
+                    width: 25,
+                    height: 2,
+                    color: isPast
+                        ? widget.stepIndicatorActiveColor
+                        : isDark
+                            ? Colors.white10
+                            : Colors.grey[300],
+                  ),
+                ),
+            ],
           ),
           const SizedBox(height: 8),
           Text(
             title,
             style: TextStyle(
-              fontSize: 12,
+              fontSize: 13,
               fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
-              color: isActive ? activeTextColor : defaultTextColor,
+              color: isActive
+                  ? widget.stepIndicatorActiveColor
+                  : isDark
+                      ? Colors.white70
+                      : Colors.grey[600],
             ),
           ),
         ],
@@ -184,8 +210,9 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget>
                   color: Theme.of(context).scaffoldBackgroundColor,
                   boxShadow: [
                     BoxShadow(
-                      color:
-                          isDark ? Colors.black26 : Colors.black.withAlpha(13),
+                      color: isDark
+                          ? Colors.black38
+                          : Colors.black.withOpacity(0.05),
                       blurRadius: 10,
                       offset: const Offset(0, 2),
                     ),
@@ -193,18 +220,21 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget>
                 ),
                 child: Column(
                   children: [
-                    LinearProgressIndicator(
-                      value: (_currentStep + 1) / widget.steps.length,
-                      backgroundColor:
-                          widget.stepIndicatorDefaultColor.withAlpha(26),
-                      valueColor: AlwaysStoppedAnimation(
-                          widget.stepIndicatorActiveColor),
-                      minHeight: 4,
-                      borderRadius: BorderRadius.circular(2),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(4),
+                      child: LinearProgressIndicator(
+                        value: (_currentStep + 1) / widget.steps.length,
+                        backgroundColor: isDark
+                            ? Colors.white10
+                            : widget.stepIndicatorDefaultColor.withAlpha(15),
+                        valueColor: AlwaysStoppedAnimation(
+                            widget.stepIndicatorActiveColor),
+                        minHeight: 6,
+                      ),
                     ),
-                    const SizedBox(height: FormTheme.spacing),
+                    const SizedBox(height: FormTheme.spacing * 1.5),
                     SizedBox(
-                      height: 80,
+                      height: 85,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: widget.steps.length,
@@ -222,13 +252,36 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget>
                 child: FadeTransition(
                   opacity: _fadeAnimation,
                   child: SingleChildScrollView(
-                    padding: EdgeInsets.all(size.width * 0.04),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ...widget.steps[_currentStep].fields,
-                        SizedBox(height: size.height * 0.1),
-                      ],
+                    padding: EdgeInsets.only(
+                        top: size.width * 0.04,
+                        left: size.width * 0.02,
+                        right: size.width * 0.02),
+                    child: Card(
+                      elevation: isDark ? 2 : 1,
+                      shadowColor:
+                          isDark ? Colors.black : Colors.black.withOpacity(0.2),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.all(size.width * 0.02),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              widget.steps[_currentStep].title,
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                color: isDark ? Colors.white : Colors.black87,
+                              ),
+                            ),
+                            const SizedBox(height: FormTheme.spacing * 1),
+                            ...widget.steps[_currentStep].fields,
+                            SizedBox(height: size.height * 0.1),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -241,7 +294,8 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget>
               color: Theme.of(context).scaffoldBackgroundColor,
               boxShadow: [
                 BoxShadow(
-                  color: isDark ? Colors.black26 : Colors.black.withAlpha(13),
+                  color:
+                      isDark ? Colors.black38 : Colors.black.withOpacity(0.05),
                   blurRadius: 10,
                   offset: const Offset(0, -2),
                 ),
@@ -285,6 +339,9 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget>
                     foregroundColor: _currentStep == widget.steps.length - 1
                         ? widget.submitButtonTextColor
                         : widget.nextButtonTextColor,
+                    backgroundColor: _currentStep == widget.steps.length - 1
+                        ? widget.stepIndicatorActiveColor
+                        : widget.nextButtonColor,
                     text: _currentStep == widget.steps.length - 1
                         ? 'Submit'
                         : 'Continue',
