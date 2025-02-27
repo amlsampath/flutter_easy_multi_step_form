@@ -76,8 +76,7 @@ class EasyTextFormField extends StatelessWidget {
               ),
               keyboardType: keyboardType,
               obscureText: obscureText,
-              validator: validator ??
-                  (value) => value!.isEmpty ? '$label is required' : null,
+              validator: validator,
             ),
           ),
         ],
