@@ -44,14 +44,19 @@ final form = MultiStepFormWidget(
 ## **Demo**  
 
 ### **Light Mode**  
-<img src="https://appmastersinstitute.com/assets/Screenshot_1740664878.png" alt="Light Mode" width="400">
 
+<div style="display: flex; justify-content: center; gap: 20px;">
+  <img src="https://appmastersinstitute.com/assets/Screenshot_1740664878.png" alt="Light Mode" width="400">
+  <img src="https://appmastersinstitute.com/assets/ios-light.png" alt="Dark Mode" width="400">
+</div>
 
 🔗 **[Watch Demo](https://www.youtube.com/shorts/DQpwuJ1mlLo)**  
 
 ### **Dark Mode**  
-<img src="https://appmastersinstitute.com/assets/Screenshot_1740665232.png" alt="Light Mode" width="400">
-
+<div style="display: flex; justify-content: center; gap: 20px;">
+  <img src="https://appmastersinstitute.com/assets/Screenshot_1740665232.png" alt="Light Mode" width="400">
+  <img src="https://appmastersinstitute.com/assets/ios-dark.png" alt="Dark Mode" width="400">
+</div>
 🔗 **[Watch Demo](https://www.youtube.com/shorts/e-lStGjX6P0)**  
 
 ## **Additional Information**  
