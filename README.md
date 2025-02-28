@@ -19,7 +19,7 @@ Add the package to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  flutter_easy_multi_step_form: ^1.0.3
+  flutter_easy_multi_step_form: ^1.0.5
 ```
 
 Run the following command to install the package:
