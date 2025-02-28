@@ -10,3 +10,6 @@
 
 ## 1.0.4
 * Code refactoring
+
+## 1.0.5
+* Update the package name
