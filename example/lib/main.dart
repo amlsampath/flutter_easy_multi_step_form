@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_easy_multi_step_from/flutter_easy_multi_step_from.dart';
+import 'package:flutter_easy_multi_step_form/flutter_easy_multi_step_form.dart';
+
 
 void main() {
   runApp(const MyApp());

@@ -62,13 +62,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_easy_multi_step_from:
+  flutter_easy_multi_step_form:
     dependency: "direct main"
     description:
       path: ".."
       relative: true
     source: path
-    version: "1.0.3"
+    version: "1.0.5"
   flutter_lints:
     dependency: "direct dev"
     description:
