@@ -1,10 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_easy_multi_step_form/flutter_easy_multi_step_form.dart';
+import 'package:flutter_easy_multi_step_form/src/multi_step_elevated_button.dart';
 
 import 'theme/form_theme.dart';
 
-import 'package:flutter_easy_multi_step_from/src/form_step.dart';
-import 'package:flutter_easy_multi_step_from/src/multi_step_elevated_button.dart';
 
 /// A widget that displays a multi-step form with navigation controls.
 ///
