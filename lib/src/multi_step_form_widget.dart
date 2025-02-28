@@ -26,9 +26,6 @@ class MultiStepFormWidget extends StatefulWidget {
     this.submitButtonTextColor = Colors.white,
     this.stepIndicatorActiveColor = const Color(0xFF2196F3), // Primary blue
     this.stepIndicatorDefaultColor = const Color(0xFF757575), // Medium grey
-
-    this.fontFamily = '',
-    this.formBackgroundColor = Colors.white,
   });
 
   /// The list of form steps to display.
@@ -62,12 +59,6 @@ class MultiStepFormWidget extends StatefulWidget {
 
   /// The color of the default step indicator.
   final Color stepIndicatorDefaultColor;
-
-  /// The color of the default step indicator.
-  final Color formBackgroundColor;
-
-  /// The font family to use for text in the form.
-  final String fontFamily;
 
   @override
   State<MultiStepFormWidget> createState() => _MultiStepFormWidgetState();
@@ -209,7 +200,10 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget>
             children: [
               Container(
                 padding: EdgeInsets.only(
-                    left: size.width * 0.04, top: size.width * 0.04),
+                  left: size.width * 0.04,
+                  top: size.width * 0.04,
+                  right: size.width * 0.04,
+                ),
                 decoration: BoxDecoration(
                   color: Theme.of(context).scaffoldBackgroundColor,
                   boxShadow: [
@@ -335,7 +329,7 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget>
                         ? widget.submitButtonTextColor
                         : widget.nextButtonTextColor,
                     backgroundColor: _currentStep == widget.steps.length - 1
-                        ? widget.stepIndicatorActiveColor
+                        ? widget.submitButtonColor
                         : widget.nextButtonColor,
                     text: _currentStep == widget.steps.length - 1
                         ? 'Submit'

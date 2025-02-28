@@ -209,62 +209,62 @@ class _ProfileCreationFormState extends State<ProfileCreationForm> {
                 ),
               ],
             ),
-            FormStep(
-              title: 'Employment Info',
-              fields: [
-                const Text('Enter your employment details:'),
-                EasyTextFormField(
-                  controller: companyController,
-                  label: 'Company Name',
-                ),
-                EasyTextFormField(
-                  controller: jobTitleController,
-                  label: 'Job Title',
-                ),
-                EasyTextFormField(
-                  controller: experienceController,
-                  label: 'Years of Experience',
-                  keyboardType: TextInputType.number,
-                ),
-              ],
-            ),
-            FormStep(
-              title: 'Emergency Contact',
-              fields: [
-                const Text('Enter an emergency contact:'),
-                EasyTextFormField(
-                  controller: contactNameController,
-                  label: 'Contact Name',
-                ),
-                EasyTextFormField(
-                  controller: relationshipController,
-                  label: 'Relationship',
-                ),
-                EasyTextFormField(
-                  controller: contactPhoneController,
-                  label: 'Contact Phone Number',
-                  keyboardType: TextInputType.phone,
-                ),
-              ],
-            ),
-            FormStep(
-              title: 'Preferences',
-              fields: [
-                const Text('Select your preferences:'),
-                EasyTextFormField(
-                  controller: contactMethodController,
-                  label: 'Preferred Contact Method (Email/Phone)',
-                ),
-                EasyTextFormField(
-                  controller: newsletterController,
-                  label: 'Newsletter Subscription (Yes/No)',
-                ),
-                EasyTextFormField(
-                  controller: additionalNotesController,
-                  label: 'Additional Notes',
-                ),
-              ],
-            ),
+            //FormStep(
+            //   title: 'Employment Info',
+            //   fields: [
+            //     const Text('Enter your employment details:'),
+            //     EasyTextFormField(
+            //       controller: companyController,
+            //       label: 'Company Name',
+            //     ),
+            //     EasyTextFormField(
+            //       controller: jobTitleController,
+            //       label: 'Job Title',
+            //     ),
+            //     EasyTextFormField(
+            //       controller: experienceController,
+            //       label: 'Years of Experience',
+            //       keyboardType: TextInputType.number,
+            //     ),
+            //   ],
+            // ),
+            // FormStep(
+            //   title: 'Emergency Contact',
+            //   fields: [
+            //     const Text('Enter an emergency contact:'),
+            //     EasyTextFormField(
+            //       controller: contactNameController,
+            //       label: 'Contact Name',
+            //     ),
+            //     EasyTextFormField(
+            //       controller: relationshipController,
+            //       label: 'Relationship',
+            //     ),
+            //     EasyTextFormField(
+            //       controller: contactPhoneController,
+            //       label: 'Contact Phone Number',
+            //       keyboardType: TextInputType.phone,
+            //     ),
+            //   ],
+            // ),
+            // FormStep(
+            //   title: 'Preferences',
+            //   fields: [
+            //     const Text('Select your preferences:'),
+            //     EasyTextFormField(
+            //       controller: contactMethodController,
+            //       label: 'Preferred Contact Method (Email/Phone)',
+            //     ),
+            //     EasyTextFormField(
+            //       controller: newsletterController,
+            //       label: 'Newsletter Subscription (Yes/No)',
+            //     ),
+            //     EasyTextFormField(
+            //       controller: additionalNotesController,
+            //       label: 'Additional Notes',
+            //     ),
+            //   ],
+            // ),
           ],
         ),
       ),
