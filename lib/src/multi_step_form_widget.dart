@@ -5,7 +5,6 @@ import 'package:flutter_easy_multi_step_form/src/multi_step_elevated_button.dart
 
 import 'theme/form_theme.dart';
 
-
 /// A widget that displays a multi-step form with navigation controls.
 ///
 /// This widget manages the state and navigation between multiple form steps,
@@ -26,6 +25,10 @@ class MultiStepFormWidget extends StatefulWidget {
     this.submitButtonTextColor = Colors.white,
     this.stepIndicatorActiveColor = const Color(0xFF2196F3), // Primary blue
     this.stepIndicatorDefaultColor = const Color(0xFF757575), // Medium grey
+    this.nextButtonText = 'Continue',
+    this.prevButtonText = 'Previous',
+    this.submitButtonText = 'Submit',
+    this.onNext,
   });
 
   /// The list of form steps to display.
@@ -59,6 +62,18 @@ class MultiStepFormWidget extends StatefulWidget {
 
   /// The color of the default step indicator.
   final Color stepIndicatorDefaultColor;
+
+  /// The Text of the next button.
+  final String nextButtonText;
+
+  /// The Text of the previous button.
+  final String prevButtonText;
+
+  /// The Text of the submit button.
+  final String submitButtonText;
+
+  /// on next button pressed this add some functionality to next button not override other functionality
+  final bool Function(int currentStep)? onNext;
 
   @override
   State<MultiStepFormWidget> createState() => _MultiStepFormWidgetState();
@@ -133,7 +148,7 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget>
                                 .withOpacity(0.4),
                             blurRadius: 8,
                             offset: const Offset(0, 2),
-                          )
+                          ),
                         ]
                       : null,
                 ),
@@ -224,9 +239,12 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget>
                         value: (_currentStep + 1) / widget.steps.length,
                         backgroundColor: isDark
                             ? Colors.white10
-                            : widget.stepIndicatorDefaultColor.withAlpha(15),
+                            : widget.stepIndicatorDefaultColor.withAlpha(
+                                15,
+                              ),
                         valueColor: AlwaysStoppedAnimation(
-                            widget.stepIndicatorActiveColor),
+                          widget.stepIndicatorActiveColor,
+                        ),
                         minHeight: 6,
                       ),
                     ),
@@ -251,10 +269,11 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget>
                   opacity: _fadeAnimation,
                   child: SingleChildScrollView(
                     padding: EdgeInsets.only(
-                        top: size.width * 0.04,
-                        left: size.width * 0.02,
-                        bottom: size.height * .15,
-                        right: size.width * 0.02),
+                      top: size.width * 0.04,
+                      left: size.width * 0.02,
+                      bottom: size.height * .15,
+                      right: size.width * 0.02,
+                    ),
                     child: Card(
                       elevation: isDark ? 2 : 1,
                       shadowColor:
@@ -266,9 +285,7 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget>
                         padding: EdgeInsets.all(size.width * 0.02),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            ...widget.steps[_currentStep].fields,
-                          ],
+                          children: [...widget.steps[_currentStep].fields],
                         ),
                       ),
                     ),
@@ -304,7 +321,7 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget>
                             _animationController.forward();
                           });
                         },
-                        text: 'Previous',
+                        text: widget.prevButtonText,
                         foregroundColor: widget.prevButtonTextColor,
                         backgroundColor: widget.prevButtonColor,
                       ),
@@ -315,6 +332,11 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget>
                   child: MultiStepElevatedButton(
                     onPressed: () {
                       if (formKeys[_currentStep].currentState!.validate()) {
+                        final canProceed =
+                            widget.onNext?.call(_currentStep) ?? true;
+
+                        if (!canProceed) return;
+
                         if (_currentStep < widget.steps.length - 1) {
                           _animationController.reverse().then((_) {
                             setState(() => _currentStep++);
@@ -332,8 +354,8 @@ class _MultiStepFormWidgetState extends State<MultiStepFormWidget>
                         ? widget.submitButtonColor
                         : widget.nextButtonColor,
                     text: _currentStep == widget.steps.length - 1
-                        ? 'Submit'
-                        : 'Continue',
+                        ? widget.submitButtonText
+                        : widget.nextButtonText,
                   ),
                 ),
               ],
